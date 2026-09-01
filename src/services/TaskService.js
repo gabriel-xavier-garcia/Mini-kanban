@@ -1,16 +1,16 @@
-import TaskRepository from "../repositories/TaskRepository";
-import AppError from "../utils/AppError";
+import TaskRepository from '../repositories/TaskRepository.js';
+import AppError from '../utils/AppError.js';
 
-const findAll = async() => {
-    return TaskRepository.findAll();
+const findAll = async () => {
+    return taskRepository.findAll();
 };
 
 const findById = async (id) => {
-    
-    const task = await TaskRepository.findById(id);
-    
-    if(!task){
-        throw new AppError('Task not found', 404);
+
+    const task = await taskRepository.findById(id);
+
+    if (!task) {
+        throw new AppError('Task não encontrada', 404);
     }
 
     return task;
@@ -18,7 +18,7 @@ const findById = async (id) => {
 
 const create = async (dados) => {
 
-    return TaskRepository.create({
+    return taskRepository.create({
         description: dados.description,
         status: dados.status,
         title: dados.title
@@ -26,33 +26,37 @@ const create = async (dados) => {
 };
 
 const update = async (id, dados) => {
-    const task = await TaskRepository.findById(id);
 
-    if(!task){
-        throw new AppError('Task not found', 404);
+    const task = await taskRepository.findById(id);
+
+    if (!task) {
+        throw new AppError('Task não encontrada', 404);
     }
 
-    const dadosAtualizacao = {
-        title: dados.title,
-        description: dados.description,
-        status: dados.status
-    };
+    const dadosAtualizacao = {};
 
-    return TaskRepository.update(id, dadosAtualizacao);
+    dadosAtualizacao.title = dados.title;
+
+    dadosAtualizacao.description = dados.description;
+
+    dadosAtualizacao.status = dados.status;
+
+    return taskRepository.update(id, dadosAtualizacao);
 };
 
 const deleteTask = async (id) => {
 
-    const task = await TaskRepository.findById(id);
+    const task = await taskRepository.findById(id);
 
-    if(!task){
-        throw new AppError('Task not found', 404);
+    if (!task) {
+        throw new AppError('Task não encontrada', 404);
     }
 
-    await TaskRepository.deleteTask(id);
+    await taskRepository.deleteTask(id);
 };
 
-export default{
+
+export default {
     findAll,
     findById,
     create,

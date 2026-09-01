@@ -1,5 +1,5 @@
 import express from 'express';
-import taskController from '../controllers/taskController.js';
+import taskController from '../controllers/TaskController.js';
 
 import validate from '../middlewares/validateMiddleware.js';
 import asyncHandler from '../middlewares/asyncHandler.js';

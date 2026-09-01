@@ -1,4 +1,4 @@
-import TaskService from "../services/TaskService";
+import TaskService from "../services/TaskService.js";
 
 const findAll = async (req, res) => {
     const tasks = await TaskService.findAll();

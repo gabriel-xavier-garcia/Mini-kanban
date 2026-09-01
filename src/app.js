@@ -2,7 +2,7 @@ import express from 'express';
 
 import taskRoutes from './routes/taskRoutes.js';
 
-import errorMiddleware from '/.middlewares/errorMiddleware.js';
+import errorMiddleware from './middlewares/errorMiddleware.js';
 
 const app = express();
 
